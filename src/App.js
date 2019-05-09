@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
+import AppLayout from './Layout/AppLayout'
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>Ola From App</h1>
-    </div>
+    <AppLayout>
+      <h1>Welcome to CryptoDash</h1>
+    </AppLayout>
   );
 }
 
