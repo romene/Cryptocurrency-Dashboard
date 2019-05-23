@@ -15,25 +15,29 @@ box-sizing: border-box;
 padding: 1em;
 color: black;
 box-shadow: 5px 2px 5px black;
+margin-bottom: 1em;
 `
 
 const ControlButtonElem = styled.div`
 cursor: pointer;
 ${props => props.active && css`
 color: blue;
+text-shadow: 0 0 60px red;
 `}
 `
 
 function ControlButton({name, active}){
     return(
         <AppContext.Consumer>
-            {/* callback to get props from context  */}
-            {({page}) => 
-                <ControlButtonElem active={page === name}>
-                    {name}
-                </ControlButtonElem>
-            }
+            {(page, setPage) => (
+            <ControlButtonElem
+             active={page === name}
+             onClick={() => setPage(name)}>
+            {name}
+        </ControlButtonElem>
+            )}
         </AppContext.Consumer>
+        
     )
 }
 
@@ -44,13 +48,9 @@ export default () => {
     <AppBar>
         <Logo>CryptoDash</Logo>
         <div>
-            <AppContext>
-                {(context) => (
-                    <p>I'm inside consumer</p>
-                )}
-            </AppContext>
+            
         </div>
-          <ControlButton name="Dashboard" />
+          <ControlButton active name="Dashboard" />
           <ControlButton name="Settings" />
         
     </AppBar>

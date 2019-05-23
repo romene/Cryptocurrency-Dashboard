@@ -1,24 +1,32 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-//create React Context
+
+
+//call variable for React.Context
 export const AppContext = React.createContext()
 
 
-export class AppProvider extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            page: 'rogerio'
-        }
-    }
-    setPage = page => this.setState({page})
+ class AppProvider extends Component {
+     constructor(props){
+         super(props)
+         this.state = {
+            page: 'dashboard',
+            setPage: this.setPage
+         }
+     }
 
-    render(){
-        return(
-            // pass state as props (value) on the context created and wrap it for children
-            <AppContext.Provider value={this.state}> 
+     setPage = page => this.setState({page})
+
+    render() {
+        return (
+              <AppContext.Provider value={this.state}> 
                 {this.props.children}
-            </AppContext.Provider>
+            </AppContext.Provider>  
+           
         )
     }
+
+
 }
+
+export default AppProvider
