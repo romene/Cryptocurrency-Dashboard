@@ -35,6 +35,7 @@ export const AppContext = React.createContext()
              firstVisit: false,
              page: 'dashboard'
          })
+         
          localStorage.setItem('cryptoDash', JSON.stringify({
              test: 'hello'
          }))
