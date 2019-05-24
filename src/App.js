@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import AppLayout from './Layout/AppLayout'
 import DashBar from './Layout/DashBar'
+import Settings from './Settings' 
 import AppProvider from './AppProvider'
 
 function App() {
@@ -9,9 +10,8 @@ function App() {
     // Wrap up App Component on the App Provider Component
     <AppProvider>
       <AppLayout>
-      <DashBar>
-        <h1>Welcome to CryptoDash</h1>
-      </DashBar>
+      <DashBar/>
+       <Settings/>
       </AppLayout>
     </AppProvider>
    

@@ -11,7 +11,29 @@ export const AppContext = React.createContext()
          super(props)
          this.state = {
             page: 'dashboard',
-            setPage: this.setPage
+            ...this.savedSettings(),
+            setPage: this.setPage,
+            confirmFavorites: this.confirmFavorites
+
+         }
+     }
+
+     //method to confirm favorites
+     confirmFavorites = () => {
+         this.setState({
+             firstVisit: false,
+             page: 'dashboard'
+         })
+         localStorage.setItem('cryptoDash', JSON.stringify({
+             test: 'hello'
+         }))
+     }
+
+     //select settings when land the page
+     savedSettings(){
+         let cryptoDashData = JSON.parse(localStorage.getItem('cryptoDah'));
+         if (!cryptoDashData){
+             return{page: 'settings', firstVisit: true}
          }
      }
 

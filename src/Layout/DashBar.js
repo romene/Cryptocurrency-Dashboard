@@ -21,18 +21,19 @@ margin-bottom: 1em;
 const ControlButtonElem = styled.div`
 cursor: pointer;
 ${props => props.active && css`
-color: blue;
-text-shadow: 0 0 60px red;
+color: gray;
+text-shadow: 0 0 60px #342434;
 `}
 `
 
-function ControlButton({name, active}){
+function ControlButton({name}){
     return(
         <AppContext.Consumer>
-            {(page, setPage) => (
+            {({page, setPage}) => (
             <ControlButtonElem
              active={page === name}
-             onClick={() => setPage(name)}>
+             onClick={() => setPage(name)}
+             >
             {name}
         </ControlButtonElem>
             )}
@@ -47,11 +48,9 @@ export default () => {
   return (
     <AppBar>
         <Logo>CryptoDash</Logo>
-        <div>
-            
-        </div>
-          <ControlButton active name="Dashboard" />
-          <ControlButton name="Settings" />
+        <div/>
+          <ControlButton active name="dashboard" />
+          <ControlButton name="settings" />
         
     </AppBar>
   )
