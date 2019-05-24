@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+const cc = require('cryptocompare')
 
 
 //call variable for React.Context
@@ -16,6 +16,17 @@ export const AppContext = React.createContext()
             confirmFavorites: this.confirmFavorites
 
          }
+     }
+     
+     //fetch data from API when component mount
+     componentDidMount = () => {
+         this.fetchCoins()
+     }
+
+     //function async await to get data coin list
+     fetchCoins = async () => {
+         let coinList = (await cc.coinList()).Data
+         console.log(coinList)
      }
 
      //method to confirm favorites
