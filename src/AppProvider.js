@@ -27,6 +27,7 @@ export const AppContext = React.createContext()
      fetchCoins = async () => {
          let coinList = (await cc.coinList()).Data
          this.setState({coinList})
+        
          
      }
 
@@ -53,6 +54,7 @@ export const AppContext = React.createContext()
      setPage = page => this.setState({page})
 
     render() {
+        
         return (
               <AppContext.Provider value={this.state}> 
                 {this.props.children}

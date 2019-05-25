@@ -9,8 +9,7 @@ export default function(props) {
         {({coinList}) => {
             if(!coinList){
             return <Loading>
-                <ReactLoading height={50} width={50} />
-
+                <ReactLoading type={"bars"} height={50} width={50} />
                 </Loading>    
             }
             return <div> {props.children} </div>

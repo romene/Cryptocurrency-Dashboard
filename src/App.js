@@ -6,7 +6,8 @@ import Settings from './Settings'
 import AppProvider from './AppProvider'
 import Content from './Shared/Content'
 
-function App() {
+function App(props) {
+console.log(props)
   return (
     // Wrap up App Component on the App Provider Component
        <AppProvider>
