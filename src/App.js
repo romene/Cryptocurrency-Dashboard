@@ -9,15 +9,14 @@ import Content from './Shared/Content'
 function App() {
   return (
     // Wrap up App Component on the App Provider Component
-      <AppLayout>
        <AppProvider>
+      <AppLayout>
       <DashBar/>
-        <Content>
-          <Settings />
-        </Content>
-      
-      </AppProvider>
+      <Content>
+        <Settings />
+      </Content>
       </AppLayout>
+      </AppProvider>
    
   );
 }

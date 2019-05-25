@@ -26,7 +26,8 @@ export const AppContext = React.createContext()
      //function async await to get data coin list
      fetchCoins = async () => {
          let coinList = (await cc.coinList()).Data
-         console.log(coinList)
+         this.setState({coinList})
+         
      }
 
      //method to confirm favorites
@@ -43,7 +44,7 @@ export const AppContext = React.createContext()
 
      //select settings when land the page
      savedSettings(){
-         let cryptoDashData = JSON.parse(localStorage.getItem('cryptoDah'));
+         let cryptoDashData = JSON.parse(localStorage.getItem('cryptoDash'));
          if (!cryptoDashData){
              return{page: 'settings', firstVisit: true}
          }

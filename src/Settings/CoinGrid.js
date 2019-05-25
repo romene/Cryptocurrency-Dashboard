@@ -1,20 +1,18 @@
 import React from 'react'
-import styled , {css}  from "styled-components";
-import { AppContext } from '../AppProvider';
+import {AppContext} from '../AppProvider'
+
 
 const CoinGrid = () => {
     return (
         <AppContext.Consumer>
-            {({coinList}) => <CoinGridstyled>
-                {Object.keys(coinList).length}
-                </CoinGridstyled> }
+            {(coinList) => {
+                return(
+                    <h1>Estou tentando coinList</h1>
+                )
+            }}
+            <h1>Ola from CoinGrid</h1>
         </AppContext.Consumer>
     )
 }
 
 export default CoinGrid
-
-
-export const CoinGridstyled = styled.div`
-display: grid;
-`

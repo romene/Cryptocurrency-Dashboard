@@ -1,10 +1,12 @@
 import React from 'react'
+import { AppContext } from '../AppProvider';
 
 const WelcomeMessage = () => {
     return (
-        <div>
-            <h1>Welcome to Crypto Dashboard!</h1>
-        </div>
+        <AppContext.Consumer>
+            {(firstVisit) =>  firstVisit ? <div> Welcome to CryptoDash, please select your favorite coins to begin. {' '}</div> : null
+            }
+        </AppContext.Consumer>
     )
 }
 
