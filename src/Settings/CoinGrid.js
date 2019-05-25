@@ -6,10 +6,13 @@ export default function() {
 return<AppContext.Consumer>
     {({ coinList }) => {
         return(
-            <CoinListStyled>
-                {Object.keys(coinList).map(coinKey => <div key={coinKey}>{coinKey}</div>
-                )}
-            </CoinListStyled>
+            <>
+                <h1>Total: {Object.keys(coinList).length} Coins.</h1>
+             <CoinListStyled>
+                    {Object.keys(coinList).map(coinKey => <div key={coinKey}>{coinKey}</div>
+                    )}
+                </CoinListStyled>   
+            </>
         )
     }}
 </AppContext.Consumer>    
