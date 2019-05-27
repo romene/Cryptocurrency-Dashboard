@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-const cc = require('cryptocompare')
+import _ from 'lodash';
 
+const cc = require('cryptocompare');
 
 //call variable for React.Context
 export const AppContext = React.createContext()
+const MAX_FAVORITES = 10;
+const LocalStorage_Key = 'Cryptos';
 
 
  class AppProvider extends Component {
@@ -11,8 +14,12 @@ export const AppContext = React.createContext()
          super(props)
          this.state = {
             page: 'dashboard',
+            favorites: [],
             ...this.savedSettings(),
             setPage: this.setPage,
+            addCoin: this.addCoin,
+            removeCoin: this.removeCoin,
+            isInFavorites: this.isInFavorites,
             confirmFavorites: this.confirmFavorites
 
          }
@@ -27,28 +34,45 @@ export const AppContext = React.createContext()
      fetchCoins = async () => {
          let coinList = (await cc.coinList()).Data
          this.setState({coinList})
-        
-         
      }
+     //function to include coins on favorites top section
+     addCoin = key => {
+         let favorites = [...this.state.favorites]
+         if(favorites.length < MAX_FAVORITES){
+             favorites.push(key)
+             this.setState({favorites})
+            }
+        }
+        
+        // function to remove coins from favorites top section
+        removeCoin = key => {
+        let favorites = [...this.state.favorites]
+        this.setState({favorites: _.pull(favorites, key)}) 
+     }
+
+     isInFavorites = key => _.includes(this.state.favorites, key);
+
+     
 
      //method to confirm favorites
      confirmFavorites = () => {
          this.setState({
              firstVisit: false,
              page: 'dashboard'
-         })
-         
-         localStorage.setItem('cryptoDash', JSON.stringify({
-             test: 'hello'
+         });
+         localStorage.setItem(LocalStorage_Key, JSON.stringify({
+             favorites: this.state.favorites,
          }))
      }
 
      //select settings when land the page
      savedSettings(){
-         let cryptoDashData = JSON.parse(localStorage.getItem('cryptoDash'));
+         let cryptoDashData = JSON.parse(localStorage.getItem(LocalStorage_Key));
          if (!cryptoDashData){
-             return{page: 'settings', firstVisit: true}
+             return {page: 'settings', firstVisit: true}
          }
+         let {favorites} = cryptoDashData;
+         return {favorites}
      }
 
      setPage = page => this.setState({page})
