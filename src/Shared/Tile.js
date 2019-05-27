@@ -6,9 +6,11 @@ export const Tile = styled.div`
 ${subtleBoxShadow}
 ${lightBlueBackground}
 padding: 10px;
+`
 
+export const SelectableTile = styled(Tile)`
 &:hover {
-    ${mainbgcolor}
-    
-}
+    cursor: pointer;
+    ${greenBoxShadow}
+}   
 `
