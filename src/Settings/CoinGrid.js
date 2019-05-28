@@ -4,18 +4,24 @@ import styled from 'styled-components'
 import CoinTile from '../Settings/CoinTile'
 
 
-function getCoins(coinList, topSection, favorites) {
-    return topSection ? favorites : Object.keys(coinList).slice(0, topSection ? 10 : 100);    
+
+function getLowerSectionCoins(coinList , filteredCoins) {
+    return (filteredCoins && Object.keys(filteredCoins)) ||
+     Object.keys(coinList).slice(0, 100) 
+}
+
+function getCoins(coinList, topSection, favorites, filterCoins) {
+    return topSection ? favorites : getLowerSectionCoins(coinList, filterCoins)   
 }
 
 export default function({topSection}) {
 return<AppContext.Consumer>
-    {({ coinList, favorites }) => {
+    {({ coinList, favorites, filteredCoins }) => {
         return(
             <>
                 
              <CoinListStyled>
-                    {getCoins(coinList, topSection, favorites).map(coinKey => 
+                    {getCoins(coinList, topSection, favorites, filteredCoins).map(coinKey => 
                     <CoinTile topSection={topSection} key={coinKey} coinKey={coinKey}
                      />
                     )}

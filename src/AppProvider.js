@@ -20,7 +20,8 @@ const LocalStorage_Key = 'Cryptos';
             addCoin: this.addCoin,
             removeCoin: this.removeCoin,
             isInFavorites: this.isInFavorites,
-            confirmFavorites: this.confirmFavorites
+            confirmFavorites: this.confirmFavorites,
+            setFilteredCoins: this.setFilteredCoins
 
          }
      }
@@ -74,6 +75,8 @@ const LocalStorage_Key = 'Cryptos';
          let {favorites} = cryptoDashData;
          return {favorites}
      }
+
+     setFilteredCoins = (filteredCoins) => this.setState({filteredCoins})
 
      setPage = page => this.setState({page})
 
