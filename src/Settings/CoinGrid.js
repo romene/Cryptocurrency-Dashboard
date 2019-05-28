@@ -13,7 +13,7 @@ return<AppContext.Consumer>
     {({ coinList, favorites }) => {
         return(
             <>
-                <h1>{topSection ? "Favorite" : "Total: " + getCoins(coinList).length} coins. </h1>
+                
              <CoinListStyled>
                     {getCoins(coinList, topSection, favorites).map(coinKey => 
                     <CoinTile topSection={topSection} key={coinKey} coinKey={coinKey}
@@ -28,7 +28,7 @@ return<AppContext.Consumer>
 
 const CoinListStyled = styled.div`
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 grid-gap: 1em;
 padding: 3rem;
 margin: 0 1em;

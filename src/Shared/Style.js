@@ -1,3 +1,6 @@
+import styled from 'styled-components';
+
+
 const theme = 'dark';
 //const theme = 'light';
 export const lightTheme = theme === 'light';
@@ -29,3 +32,4 @@ export const fontSize2 = 'font-size: 1.0em';
 export const fontSize3 = 'font-size: .75em';
 
 export const textAlignCenter = 'text-align: center;';
+
