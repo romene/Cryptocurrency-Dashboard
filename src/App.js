@@ -3,11 +3,11 @@ import './App.css';
 import AppLayout from './Layout/AppLayout'
 import DashBar from './Layout/DashBar'
 import Settings from './Settings' 
+import Dashboard from './Dashboard'
 import AppProvider from './AppProvider'
 import Content from './Shared/Content'
 
 function App(props) {
-console.log(props)
   return (
     // Wrap up App Component on the App Provider Component
        <AppProvider>
@@ -15,6 +15,7 @@ console.log(props)
       <DashBar/>
       <Content>
         <Settings />
+        <Dashboard />
       </Content>
       </AppLayout>
       </AppProvider>

@@ -15,7 +15,7 @@ function getCoins(coinList, topSection, favorites, filterCoins) {
 }
 
 export default function({topSection}) {
-return<AppContext.Consumer>
+return(<AppContext.Consumer>
     {({ coinList, favorites, filteredCoins }) => {
         return(
             <>
@@ -29,7 +29,7 @@ return<AppContext.Consumer>
             </>
         )
     }}
-</AppContext.Consumer>    
+</AppContext.Consumer>    )
 }
 
 const CoinListStyled = styled.div`
