@@ -29,6 +29,7 @@ const LocalStorage_Key = 'Cryptos';
      //fetch data from API when component mount
      componentDidMount = () => {
          this.fetchCoins()
+         this.fetchPrices()
      }
 
      //function async await to get data coin list
@@ -36,6 +37,27 @@ const LocalStorage_Key = 'Cryptos';
          let coinList = (await cc.coinList()).Data
          this.setState({coinList})
      }
+
+     fetchPrices = async () => {
+         if (this.state.firstVisit) return;
+         let prices = await this.prices();
+         this.setState({prices})
+     }
+     
+     prices = async () => {
+         let returnData = [];
+         for(let i = 0; i < this.state.favorites.length; i++) {
+             try {
+                 let priceData = await cc.priceFull(this.state.favorites[i], 'USD')
+                 returnData.push(priceData)
+                } catch (e) {
+                    console.log('Fectch price error: ', e)
+                }
+            }
+            return returnData
+     }
+
+
      //function to include coins on favorites top section
      addCoin = key => {
          let favorites = [...this.state.favorites]
@@ -60,7 +82,9 @@ const LocalStorage_Key = 'Cryptos';
          this.setState({
              firstVisit: false,
              page: 'dashboard'
-         });
+         }, () => {
+             this.fetchPrices();
+         } );
          localStorage.setItem(LocalStorage_Key, JSON.stringify({
              favorites: this.state.favorites,
          }))

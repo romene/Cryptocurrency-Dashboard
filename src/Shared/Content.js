@@ -6,11 +6,14 @@ import styled from 'styled-components'
 export default function(props) {
     
     return <AppContext.Consumer>
-        {({coinList}) => {
+        {({coinList, prices, firstVisit}) => {
             if(!coinList){
             return <Loading>
                 <ReactLoading type={"bars"} height={50} width={50} />
                 </Loading>    
+            }
+            if(!firstVisit && !prices){    
+                return <div> Loadind prices </div>
             }
             return <div> {props.children} </div>
         }}
