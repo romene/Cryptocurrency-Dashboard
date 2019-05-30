@@ -9,6 +9,7 @@
     "react": "^16.8.6",
     "react-circular-progressbar": "^2.0.0",
     "react-dom": "^16.8.6",
+    "react-highcharts": "^16.0.2",
     "react-loading": "^2.0.3",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",

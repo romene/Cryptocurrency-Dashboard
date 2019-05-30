@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import Page from '../Shared/Page'
 import PriceGrid from './PriceGrid'
 import CoinSpotlight from './CoinSpotlight';
+import PriceCharts from './PriceCharts'
 
 export default function() {
   return <Page name="dashboard">
     <PriceGrid />
     <ChartGrid>
     <CoinSpotlight />
-    <div>Chart goes here!</div>
+    <PriceCharts />
     </ChartGrid>
   </Page>
 }

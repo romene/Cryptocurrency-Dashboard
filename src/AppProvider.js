@@ -137,3 +137,6 @@ const LocalStorage_Key = 'Cryptos';
 }
 
 export default AppProvider
+
+
+// {"favorites":["BTC","ETH","ETC","FTC","1337","LTC"],"currentFavorite":"BTC"}
