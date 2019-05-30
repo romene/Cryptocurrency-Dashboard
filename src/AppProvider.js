@@ -21,6 +21,7 @@ const LocalStorage_Key = 'Cryptos';
             removeCoin: this.removeCoin,
             isInFavorites: this.isInFavorites,
             confirmFavorites: this.confirmFavorites,
+            setCurrentFavorite: this.setCurrentFavorite,
             setFilteredCoins: this.setFilteredCoins
 
          }
@@ -77,18 +78,36 @@ const LocalStorage_Key = 'Cryptos';
 
      
 
-     //method to confirm favorites
+     //method to confirm favorites and get current favorite
+
      confirmFavorites = () => {
+         //set current favorite coin
+         let currentFavorite = this.state.favorites[0];
+        
          this.setState({
              firstVisit: false,
-             page: 'dashboard'
+             page: 'dashboard',
+             currentFavorite
          }, () => {
              this.fetchPrices();
          } );
          localStorage.setItem(LocalStorage_Key, JSON.stringify({
              favorites: this.state.favorites,
+             currentFavorite
          }))
      }
+
+     setCurrentFavorite = (sym) => {
+         this.setState({
+             currentFavorite: sym
+         })
+         localStorage.setItem(LocalStorage_Key, JSON.stringify({
+            //  merge currentFavorite with the current localstorage
+             ...JSON.parse(localStorage.getItem(LocalStorage_Key)),
+             currentFavorite: sym
+         }))
+     }
+
 
      //select settings when land the page
      savedSettings(){
@@ -96,13 +115,13 @@ const LocalStorage_Key = 'Cryptos';
          if (!cryptoDashData){
              return {page: 'settings', firstVisit: true}
          }
-         let {favorites} = cryptoDashData;
-         return {favorites}
+         let {favorites, currentFavorite} = cryptoDashData;
+         return { favorites, currentFavorite}
      }
-
+     
+     setPage = page => this.setState({page})
      setFilteredCoins = (filteredCoins) => this.setState({filteredCoins})
 
-     setPage = page => this.setState({page})
 
     render() {
         
