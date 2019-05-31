@@ -7,7 +7,7 @@ import CoinTile from '../Settings/CoinTile'
 
 function getLowerSectionCoins(coinList , filteredCoins) {
     return (filteredCoins && Object.keys(filteredCoins)) ||
-     Object.keys(coinList).slice(0, 200) 
+     Object.keys(coinList).slice(0, 100) 
 }
 
 function getCoins(coinList, topSection, favorites, filterCoins) {

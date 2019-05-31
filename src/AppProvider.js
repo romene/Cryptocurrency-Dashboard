@@ -15,7 +15,7 @@ const LocalStorage_Key = 'Cryptos';
          super(props)
          this.state = {
             page: 'dashboard',
-            favorites: [],
+            favorites: ['BTC'],
             ...this.savedSettings(),
             setPage: this.setPage,
             addCoin: this.addCoin,
