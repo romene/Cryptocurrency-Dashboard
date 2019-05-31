@@ -5,6 +5,7 @@ import CoinHeaderGrid from './CoinHeaderGrid'
 import CoinImage from '../Shared/CoinImage'
 
 
+
 function ClickCoinHandler(topSection, coinKey, addCoin, removeCoin){
     return topSection ? () => {
         removeCoin(coinKey)

@@ -23,12 +23,11 @@ ${DeletableTile}:hover & {
 export default function({name, symbol, topSection}){
     return <CoinHeaderGridStyled>
         <div>{name}</div>
-
-        {topSection ? (
+        {topSection ?
+         <DeleteIcon>X</DeleteIcon>
+        :
         <CoinSymbol>{symbol}</CoinSymbol>
-        ) : (
-        <DeleteIcon>X</DeleteIcon>
-        )}
+         }
 
     </CoinHeaderGridStyled>
 }

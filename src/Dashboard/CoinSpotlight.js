@@ -7,11 +7,14 @@ import CoinImage from '../Shared/CoinImage'
 const CoinSpotlight = () => {
     return (
         <AppContext.Consumer>
-        {({currentFavorite, coinList}) => 
-        <Tile>
-           <SpotlightName>{coinList[currentFavorite].CoinName} </SpotlightName>
-           <CoinImage spotlight coin={coinList[currentFavorite]} />
-        </Tile>
+        {({currentFavorite, coinList}) => {
+            if (currentFavorite) {
+                return <Tile><SpotlightName>{coinList[currentFavorite].CoinName} </SpotlightName>
+                    <CoinImage spotlight coin={coinList[currentFavorite]} /></Tile> 
+            } else {
+                return <div> </div>
+            }
+        }
         }
         </AppContext.Consumer>
     )
@@ -20,6 +23,6 @@ const CoinSpotlight = () => {
 export default CoinSpotlight
 
 
-const SpotlightName = styled.h2`
+export const SpotlightName = styled.h2`
 text-align: center;
 `

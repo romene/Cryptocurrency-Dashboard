@@ -5,7 +5,7 @@ const cc = require('cryptocompare');
 
 //call variable for React.Context
 export const AppContext = React.createContext()
-const MAX_FAVORITES = 10;
+export const MAX_FAVORITES = 10;
 const TIME_UNITS = 10;
 const LocalStorage_Key = 'Cryptos';
 
@@ -105,7 +105,7 @@ const LocalStorage_Key = 'Cryptos';
          if(favorites.length < MAX_FAVORITES){
              favorites.push(key)
              this.setState({favorites})
-            }
+            } 
         }
         
         // function to remove coins from favorites top section
@@ -164,6 +164,7 @@ const LocalStorage_Key = 'Cryptos';
      }
      
      setPage = page => this.setState({page})
+
      setFilteredCoins = (filteredCoins) => this.setState({filteredCoins})
 
 
