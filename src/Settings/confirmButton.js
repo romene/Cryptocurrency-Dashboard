@@ -5,7 +5,8 @@ import { fontSize1, greenBoxShadow, color, bgbutton} from '../Shared/Style'
 
 const ConfirmButtonStyled = styled.button`
 margin: 20px;
-padding: 5px;
+padding: .7em;
+border-radius: 10px;
 color: ${color};
 ${fontSize1}
 ${bgbutton}

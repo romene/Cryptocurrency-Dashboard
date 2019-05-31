@@ -4,7 +4,12 @@ import { AppContext } from '../AppProvider';
 const WelcomeMessage = () => {
     return (
         <AppContext.Consumer>
-            {(firstVisit) =>  firstVisit ? <div> Welcome to CryptoDash, please select your favorite coins to begin. {' '}</div> : null
+            {(firstVisit) =>  {
+                
+                return(
+                    firstVisit ? <div> Welcome to CryptoDash, please select your favorite coins to begin. {' '}</div> : null
+                )
+            }
             }
         </AppContext.Consumer>
     )

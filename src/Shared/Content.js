@@ -1,7 +1,6 @@
 import React from 'react'
 import { AppContext } from '../AppProvider';
 import ReactLoading from 'react-loading';
-import styled from 'styled-components'
 import Loading from './Loading'
 
 export default function(props) {

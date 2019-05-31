@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import AppLayout from './Layout/AppLayout'
+import styled from 'styled-components'
 import DashBar from './Layout/DashBar'
 import Settings from './Settings' 
 import Dashboard from './Dashboard'
@@ -13,10 +14,12 @@ function App(props) {
        <AppProvider>
       <AppLayout>
       <DashBar/>
-      <Content>
-        <Settings />
-        <Dashboard />
-      </Content>
+          <Content>
+            <Settings />
+        <CenterContent>
+            <Dashboard />
+        </CenterContent>
+          </Content>
       </AppLayout>
       </AppProvider>
    
@@ -24,3 +27,10 @@ function App(props) {
 }
 
 export default App;
+
+
+const CenterContent = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+`

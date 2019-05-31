@@ -24,4 +24,9 @@ margin-top: 20px;
 grid-gap: 15px;
 grid-template-columns: 1fr 3fr;
 
+
+@media (max-width: 991px){
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+
+}
 `
