@@ -4,6 +4,8 @@ import ConfirmButton from './confirmButton'
 import Page from '../Shared/Page'
 import CoinGrid from './CoinGrid'
 import Search from '../Settings/Search'
+
+
 export default function(){
     return(
         <Page name="settings">

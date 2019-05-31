@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import _ from 'lodash';
-
+import moment from 'moment'
 const cc = require('cryptocompare');
 
 //call variable for React.Context
 export const AppContext = React.createContext()
 const MAX_FAVORITES = 10;
+const TIME_UNITS = 10;
 const LocalStorage_Key = 'Cryptos';
 
 
@@ -31,6 +32,7 @@ const LocalStorage_Key = 'Cryptos';
      componentDidMount = () => {
          this.fetchCoins()
          this.fetchPrices()
+         this.fetchHistorical()
      }
 
      //function async await to get data coin list
@@ -44,6 +46,25 @@ const LocalStorage_Key = 'Cryptos';
          let prices = await this.prices();
          this.setState({prices})
      }
+
+     fetchHistorical = async () => {
+         //if its the fistVisit return nothing
+         if (this.state.firstVisit) return;
+         let results = await this.historical()
+         let historical = [
+             {
+             name: this.state.currentFavorite,
+             data: results.map((value, index) => [
+                 moment().subtract({months: TIME_UNITS - index}).valueOf(),
+                 value.USD
+             ] )
+            }
+        ]
+        
+        this.setState({
+            historical
+        })
+     }
      
      prices = async () => {
          let returnData = [];
@@ -55,9 +76,28 @@ const LocalStorage_Key = 'Cryptos';
                     console.log('Fectch price error: ', e)
                 }
             }
+            
             return returnData
-     }
+        }
 
+     // function to get an array of promises 
+     historical = () => {
+         //set an empty array to get the promises
+        let promises = [] 
+        // for loop to get 10 results
+         for (let units = TIME_UNITS; units > 0; units--){
+             promises.push(
+                 cc.priceHistorical(
+                     this.state.currentFavorite,
+                     ['USD'],
+                     moment().subtract({months: units}).toDate()
+
+
+                     )
+             )
+         }
+           return Promise.all(promises)
+     }
 
      //function to include coins on favorites top section
      addCoin = key => {
@@ -87,9 +127,12 @@ const LocalStorage_Key = 'Cryptos';
          this.setState({
              firstVisit: false,
              page: 'dashboard',
-             currentFavorite
+             currentFavorite,
+             prices: null,
+             historical: null
          }, () => {
              this.fetchPrices();
+             this.fetchHistorical()
          } );
          localStorage.setItem(LocalStorage_Key, JSON.stringify({
              favorites: this.state.favorites,
@@ -99,8 +142,9 @@ const LocalStorage_Key = 'Cryptos';
 
      setCurrentFavorite = (sym) => {
          this.setState({
-             currentFavorite: sym
-         })
+             currentFavorite: sym,
+             historical: null,
+         }, this.fetchHistorical)
          localStorage.setItem(LocalStorage_Key, JSON.stringify({
             //  merge currentFavorite with the current localstorage
              ...JSON.parse(localStorage.getItem(LocalStorage_Key)),
