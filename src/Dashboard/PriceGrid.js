@@ -6,15 +6,15 @@ import PriceTile from './PriceTile'
 
 
 const PriceGrid = styled.div`
-max-width: 100%;
+max-width: 80%;
 display: grid;
 grid-template-columns: repeat(5, 1fr);
 grid-gap: 20px;
-margin-top: 5em;
+margin: 5em 3em 0 3em;
 
 
 @media (max-width: 991px){
-grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 
 }
 
